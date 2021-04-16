@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import { AwsService } from "./aws.service";
+import {Activity} from "../entities/activity.entity";
+import {Room} from "../entities/room.entity";
+import {Reservation} from "../entities/reservation.entity";
 
 @Injectable()
 export class TypeOrmConfigService implements TypeOrmOptionsFactory {
@@ -16,10 +19,10 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       host,
       port,
       username,
-      database: process.env.DATABASE_NAME,
+      database: 'traveling',
       password,
       entities: [process.env.PWD + '/dist/**/*.entity{.ts,.js}'],
-      synchronize: Boolean(process.env.TYPEORM_SYNCHRONIZE),
+      synchronize: true,
     };
   }
 }
